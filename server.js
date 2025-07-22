@@ -304,11 +304,11 @@ function handleSessionJoin(ws, clientId, message) {
   
   session.players.push(newPlayer);
   
-  // Send success response to the joining player
+  // Send player_join message to the joining player (this is what the client expects)
   ws.send(JSON.stringify({
-    type: 'session_join',
+    type: 'player_join',
     sessionId,
-    success: true,
+    playerId: message.playerId,
     data: { player: newPlayer, session },
     timestamp: new Date()
   }));
